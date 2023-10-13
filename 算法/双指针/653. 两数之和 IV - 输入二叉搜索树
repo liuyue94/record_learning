@@ -1,0 +1,44 @@
+653. 两数之和 IV - 输入二叉搜索树
+
+中序遍历+双指针
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+        #二叉搜索树中序遍历，转为数组，在利用双指针
+
+        def inorder(root):
+            #左根右
+            #递归出口
+            if root==None:
+                return []
+            ret = []
+            ret = ret+inorder(root.left)
+            ret.append(root.val)
+            ret = ret+inorder(root.right)
+            
+            return ret
+
+        numbers = inorder(root)
+        
+        print(numbers)
+        if len(numbers)<=1:
+            return False
+        left = 0
+        right= len(numbers)-1
+        
+        #不能写等于，等于会重复计算
+        while left<right:
+            if numbers[left]+numbers[right]==k:
+                return True
+            elif numbers[left]+numbers[right]<k:
+                left = left+1
+            elif numbers[left]+numbers[right]>k:
+                right=right-1
+        
+        return False
