@@ -1,0 +1,21 @@
+26. 删除有序数组中的重复项
+
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        #降序排序
+        #left要从1开始，第一个元素肯定要保留
+
+        #定义两个指针 fast\textit{fast}fast 和 slow\textit{slow}slow 分别为快指针和慢指针，快指针表示遍历数组到达的下标位置，慢指针表示下一个不同元素要填入的下标位置（注意）
+        left = 0
+        right = 0
+
+        while right<len(nums):
+            #左指针先移动，在赋值，否则会少元素，左右指针中间的部分都是不需要的元素
+            if nums[right]!=nums[left]:
+                left = left+1
+                nums[left] = nums[right]
+                
+            right = right+1
+        return left+1
+       
