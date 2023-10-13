@@ -1,0 +1,23 @@
+27. 移除元素
+
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        #原地移除
+        #右指针 right\textit{right}right 指向当前将要处理的元素，左指针 left\textit{left}left 指向下一个将要赋值的位置。
+        left = 0
+        right = 0
+        
+        #注意这个循环条件
+        while right<len(nums):
+            #如果右指针指向的元素不等于 val，它一定是输出数组的一个元素，我们就将右指针指向的元素复制到左指针位置，然后将左右指针同时右移；
+            if nums[right]!=val:
+                nums[left] = nums[right]
+                left = left+1
+            #如果右指针指向的元素等于 val\textit{val}val，它不能在输出数组里，此时左指针不动，右指针右移一位
+            right = right+1
+        
+        #返回移除后数组的新长度
+        #注意这个返回值，当前left的值的前一个才是新数组的长度
+        return left
+            
