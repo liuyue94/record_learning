@@ -1,0 +1,22 @@
+137. 只出现一次的数字 II
+
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        #将各个数专为二进制，计算每一位上1的个数
+        ans = 0
+        for i in range(32):
+            total = sum((num >> i) & 1 for num in nums)
+            if total % 3:
+                # Python 这里对于最高位需要特殊判断
+                if i == 31:
+                    ans -= (1 << i)
+                else:
+                    #看不懂这个
+                    #左移运算符可用于各种目的，例如：将数字乘以 2 的 i 次幂
+                    # 可以把之前计算出来的数和新的数字计算或，会计算最后的数
+                    ans |= (1 << i)
+        return ans
+
+
+
