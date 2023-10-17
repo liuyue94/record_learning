@@ -1,0 +1,23 @@
+80. 删除有序数组中的重复项 II
+
+
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        #有序数组
+        #使得出现次数超过两次的元素只出现两次
+        
+        #前两个元素肯定可以保留
+        left = 2
+        right =2
+
+        while right<len(nums):
+            #和left-2进行比较,
+            if nums[right]!=nums[left-2]:
+                nums[left] = nums[right]
+                left = left+1
+
+            right = right+1
+        #left-1对应的元素是新数组
+        return left
+
+
