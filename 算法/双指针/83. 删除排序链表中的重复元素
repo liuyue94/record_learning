@@ -1,0 +1,31 @@
+83. 删除排序链表中的重复元素
+
+
+
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        #排序
+        if head==None or head.next==None:
+            return head
+
+        #备份头节点
+        newhead = head
+
+        #不需要虚拟头节点，因为第一个元素是不会被删除的
+
+        #指定快慢指针
+        slow = head
+        fast = head
+
+        while fast:
+            #和slow比较
+            if fast.val!=slow.val:
+                slow = slow.next
+                slow.val = fast.val
+               
+                
+            fast = fast.next
+
+        #返回 已排序的链表 ，需要断开slow之后的链表
+        slow.next = None
+        return head
