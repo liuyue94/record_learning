@@ -1,0 +1,41 @@
+206. 反转链表
+
+
+#递归
+#如果不懂最后两行代码，可以去看labuladong的文章
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        #递归
+        #递归出口
+        if head==None or head.next==None:
+            return head
+        
+        new = self.reverseList(head.next)
+
+        head.next.next = head
+        head.next ==None
+
+        return new
+
+
+迭代
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        #迭代
+
+        if head == None or head.next == None:
+            return head
+
+        pre = None
+        current = head
+
+        while current:
+            new = current.next
+            current.next = pre
+
+            pre = current
+
+            current = new
+        
+        #为什么是pre，最后的new==None,new又赋值给了current,因此不能返回current
+        return pre
