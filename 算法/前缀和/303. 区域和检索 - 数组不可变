@@ -1,0 +1,21 @@
+303. 区域和检索 - 数组不可变
+
+
+前缀和
+class NumArray:
+
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+
+    def sumRange(self, left: int, right: int) -> int:
+        #前缀和数组
+        if len(self.nums)==0:
+            return 0
+        ret = [0]
+          
+        #从1开始
+        for i in range(0,len(self.nums)):
+            ret.append(ret[-1]+self.nums[i])
+
+        #这种方式left=0的时候会报错,因此创建长度为 n+1n+1n+1 的前缀和数组 sums\textit{sums}sums
+        return ret[right+1]-ret[left]
