@@ -1,0 +1,61 @@
+2530. 执行 K 次操作后的最大分数
+
+
+2530. 执行 K 次操作后的最大分数
+
+
+
+
+超出时间限制
+class Solution:
+    def maxKelements(self, nums: List[int], k: int) -> int:
+        #贪心
+
+        #模拟
+    
+        ret = 0
+
+        #for i in range(0,k):
+        
+        for i in range(0,k):
+            nums.sort()
+            nums.reverse()
+            ret = ret+nums[0]
+            nums[0] = ceil(nums[0]/3)
+
+            
+        #替换将 nums[i] 替换为 ceil(nums[i] / 3) 
+        return ret
+     
+
+1、
+heapq.heapify(x)
+将list x 转换成堆，原地，线性时间内。
+
+
+
+贪心+ 优先队列
+
+class Solution:
+    def maxKelements(self, nums: List[int], k: int) -> int:
+        #贪心
+        
+        # python 中的 heap 默认是小根堆，需要对元素取相反数
+        #小根堆，最小值在最顶伤
+        q = [-x for x in nums]
+
+        heapify(q)
+
+        print(q)
+        ret = 0
+
+        for i in range(0,k):
+            #取最小值
+            x = heappop(q)
+
+            ret = ret-x
+            
+            #添加进去的元素还得变成负数
+            heappush(q,-ceil(-x/3))
+
+        return ret
