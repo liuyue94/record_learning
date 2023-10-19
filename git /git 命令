@@ -1,0 +1,36 @@
+git命令
+
+廖雪峰的官方网站：https://www.liaoxuefeng.com/wiki/896043488029600/897013573512192
+1、git config
+
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+
+2、git init 初始化仓库
+
+3、git 添加仓库
+
+git add <file>      用法：将文件添加到暂存区
+git add .
+
+git commit -m <message>  作用：将文件提交到本地仓库
+
+4、git status 查看工作区
+
+5、git diff
+
+
+6、git log 显示从最近到最远的提交日志
+
+
+7、 在Git中，用HEAD表示当前版本
+   上一个版本就是HEAD^，上上一个版本就是HEAD^^
+   版本回退：Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，Git仅仅是把HEAD从指向新的版本
+
+8、git reset --hard commit_id 版本回退
+
+9、git log 可以查看提交历史，以便确定要回退到哪个版本
+
+10、git reflog查看命令历史，以便确定要回到未来的哪个版本
+
