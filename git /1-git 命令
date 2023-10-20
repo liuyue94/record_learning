@@ -1,0 +1,62 @@
+1-git命令
+
+廖雪峰的官方网站：https://www.liaoxuefeng.com/wiki/896043488029600/897013573512192
+1、git config
+
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+
+2、git init 初始化仓库
+
+3、git 添加仓库
+
+git add <file>      用法：将文件添加到暂存区
+git add .
+
+git commit -m <message>  作用：将文件提交到本地仓库
+
+4、git status 查看工作区
+
+5、git diff
+
+
+6、git log 显示从最近到最远的提交日志
+
+
+7、 版本回退
+       在Git中，用HEAD表示当前版本
+       上一个版本就是HEAD^，上上一个版本就是HEAD^^
+       版本回退：Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，Git仅仅是把HEAD从指向新的版本
+
+       git reset --hard commit_id 版本回退
+
+       git log 可以查看提交历史，以便确定要回退到哪个版本
+
+       git reflog查看命令历史，以便确定要回到未来的哪个版本
+
+8、git 基本介绍
+      workspace：工作区
+      staging area：暂存区/缓存区    (隐藏目录.git)
+      local repository：版本库或本地仓库
+      remote repository：远程仓库
+
+Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD
+
+
+     第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；
+
+     第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支
+
+9、 git checkout -- file可以丢弃工作区的修改
+
+    git reset HEAD <file>可以把暂存区的修改撤销掉（unstage），重新放回工作区
+
+   场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+   
+   场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。
+   
+   场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+
+
+
