@@ -1,0 +1,70 @@
+python 字典
+
+
+键一般是唯一的，如果重复最后的一个键值对会替换前面的，值不需要唯一
+
+
+>>> tinydict = {'a': 1, 'b': 2, 'b': '3'}
+>>> tinydict['b']
+'3'
+>>> tinydict
+{'a': 1, 'b': '3'}
+
+
+
+dict.items() —— 以列表返回可遍历的(键, 值) 元组数组
+dict.keys()——   以列表返回一个字典所有的键
+dict.values()—— 以列表返回字典中的所有值
+dict.clear()——  删除字典内所有元素
+
+
+
+访问元素，两种方式的区别
+
+dict[a]——访问，如果用字典里没有的键访问数据，会输出错误KeyError: 'Alice'
+dict.get(key, default=None)——返回指定键的值，如果值不在字典中返回default值
+
+
+删除元素
+
+del dict[a] 删除字典里的某个元素
+
+del dict ——删除整个字典
+
+
+关键点：
+
+两个重要的点需要记住：
+
+1）不允许同一个键出现两次。创建时如果同一个键被赋值两次，后一个值会被记住
+2）键必须不可变，所以可以用数字，字符串或元组充当，所以用列表就不行
+
+
+函数
+
+
+len(dict) ——计算字典的长度
+type(dict) ——返回类型
+
+方法
+
+dict.items() ——     以列表返回可遍历的(键, 值) 元组数组
+dict.keys()——       以列表返回一个字典所有的键
+dict.values()——     以列表返回字典中的所有值
+dict.clear()——      删除字典内所有元素
+
+
+tinydict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+tinydict.clear()
+print tinydict
+
+结果：{}
+
+
+dict.update(dict2)  把字典dict2的键/值对更新到dict里
+
+tinydict = {'Name': 'Zara', 'Age': 7, 'Class': 'First'}
+tinydict2 = {'a': 1, 'b': 2, 'b': '3'}
+tinydict.update(tinydict2)
+print tinydict
+{'a': 1, 'Age': 7, 'b': '3', 'Name': 'Zara', 'Class': 'First'}
