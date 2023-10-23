@@ -1,0 +1,27 @@
+203. 移除链表元素
+
+
+给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。
+
+
+
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        #因为要删除元素，为了处理的一致性，需要添加头节点
+        #移除元素，可能会移走头节点，所以加一个虚拟头节点
+        if head ==None:
+            return head
+        newhead = ListNode()
+        newhead.next = head
+
+        #备份一下节点
+        r = newhead
+
+        while newhead.next:
+            if newhead.next.val==val:
+                #此时无需移动newhead,因为下一个节点是未判断的节点
+                newhead.next = newhead.next.next
+            else:
+                newhead = newhead.next
+
+        return r.next
