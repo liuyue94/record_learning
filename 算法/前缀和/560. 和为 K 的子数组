@@ -1,0 +1,26 @@
+560. 和为 K 的子数组
+
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        #返回该数组中和为k的连续子数组的个数
+
+        s = 0
+        ret = 0
+
+        #hash
+        h = {}
+
+        #不要忘了这个，例如[1,1,1]中s=2,k=2,代表索引从0开始的字数组（就是s-k==0）
+        h[0] =1
+        
+        #遍历到x的时候，判断x-k是否在hash中
+        #x-(x-k)
+        for i in range(0,len(nums)):
+            s = s+nums[i]
+            ret = ret+h.get(s-k,0)
+            
+            #添加hash
+            h[s] = h.get(s,0)+1
+        print(h)
+        return ret
