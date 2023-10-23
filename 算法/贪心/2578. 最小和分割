@@ -1,0 +1,10 @@
+2578. 最小和分割
+
+
+
+class Solution:
+    def splitNum(self, num: int) -> int:
+        s = sorted(str(num))
+        #偶数直接交替赋值
+        #奇数最后一位直接赋值给num1就行，因为num1首位是最小的
+        return int(''.join(s[::2])) + int(''.join(s[1::2]))
