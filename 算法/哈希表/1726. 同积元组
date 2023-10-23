@@ -1,0 +1,29 @@
+1726. 同积元组
+
+给你一个由 不同 正整数组成的数组 nums ，请你返回满足 a * b = c * d 的元组 (a, b, c, d) 的数量。其中 a、b、c 和 d 都是 nums 中的元素，且 a != b != c != d 。
+
+
+
+
+class Solution:
+    def tupleSameProduct(self, nums: List[int]) -> int:
+        #不同 正整数
+        
+        #返回数量
+        #先一个循环，拿到a*b?
+        
+        #hash存储两个元素的乘积及其数量
+        h = {}
+        for i in range(0,len(nums)):
+            for j in range(i+1,len(nums)):
+                t = nums[i]*nums[j]
+                h[t] = h.get(t,0)+1
+        #由于数组中没有重复元素，所以每一次的位置交换一定是一种新的情况
+
+        #意思就是我们已经算出来了比如12的乘积有三次，就一共有3种选择方式，每一种选择又有8种可能
+        ret = 0
+        #c(n,2) = n!/2!(n-2)! = [n(n-1)]/2 *8
+        for cnt in h.values():
+            ret += (cnt) * (cnt - 1) * 4 
+
+        return ret
