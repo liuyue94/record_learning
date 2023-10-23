@@ -1,0 +1,53 @@
+485. 最大连续 1 的个数
+
+
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        #双指针
+        slow = 0
+        fast = 0
+        
+        maxcount = 0
+
+        while slow<len(nums):
+            # 找出连续1中，第一个1的位置
+            if nums[slow]!=1:
+                slow = slow+1
+            else:
+                #快慢指针一起遍历
+                fast = slow
+
+                while fast<len(nums) and nums[fast]==1:
+                    fast = fast+1
+
+                #退出循环后，证明fast不等于1了
+                #fast-1-slow+1
+                maxcount = max(maxcount,fast-slow)
+
+                #重置slow指针
+                slow =fast
+
+        return maxcount
+
+
+
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        #记录当前连续1的个数
+        count = 0
+        #记录最大的连续 111 的个数
+        maxcount = 0
+
+        for i in range(0,len(nums)):
+            #记录当前1的个数
+            if nums[i]==1:
+                count = count+1
+            else:
+                maxcount = max(maxcount,count)
+                #重置count
+                count=0
+        #数组的最后一个元素可能是 111
+        maxcount = max(maxcount,count)
+        return maxcount
+
+            
