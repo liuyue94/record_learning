@@ -1,0 +1,29 @@
+LCR 013. 二维区域和检索 - 矩阵不可变
+
+
+前缀和
+
+
+class NumMatrix:
+
+    def __init__(self, matrix: List[List[int]]):
+
+        #以后二维矩阵需要考虑坐标为0的特殊情况,
+
+
+        m, n = len(matrix), (len(matrix[0]) if matrix else 0)
+        #初始化前缀和矩阵
+        self.sums = [[0] * (n + 1) for _ in range(m + 1)]
+        _sums = self.sums
+        
+        #创建 m+1m+1m+1 行 n+1n+1n+1 列的二维数组 sums\textit{sums}sums，其中 sums[i+1][j+1]\textit{sums}[i+1][j+1]sums[i+1][j+1] 的值为上述 f(i,j)f(i,j)f(i,j) 的值
+        for i in range(m):
+            for j in range(n):
+                _sums[i + 1][j + 1] = _sums[i][j + 1] + _sums[i + 1][j] - _sums[i][j] + matrix[i][j]
+        
+        print(_sums)
+
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        _sums = self.sums
+
+        return _sums[row2 + 1][col2 + 1] - _sums[row1][col2 + 1] - _sums[row2 + 1][col1] + _sums[row1][col1]
