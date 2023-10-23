@@ -1,0 +1,50 @@
+76. 最小覆盖子串
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #将t中的字符串及其个数存入hash中
+        hash_t = {}
+        for i in range(0,len(t)):
+            hash_t[t[i]] = hash_t.get(t[i],0)+1
+        
+        #当前窗口中符合要求的字符串的个数
+        window =  {}
+
+        #这个是记录当前已经满足要求的字符数量
+        count = 0
+        
+        #初始化滑动窗口的指针
+        left = 0
+        right = 0
+
+        #
+        start = 0
+        lens =  float('inf')
+        #遍历s,遍历的过程相当于快指针
+        while right<len(s):
+            #窗口扩大
+            if s[right] in hash_t.keys():
+                window[s[right]] = window.get(s[right],0)+1
+                if window[s[right]]==hash_t[s[right]]:
+                    count = count+1
+            right = right+1
+            
+
+            #符合while条件后，已经满足题目要求的可能结果窗口应该收缩
+            while count==len(hash_t):
+                #更新一下答案
+                if right-left<lens:
+                    start = left
+                    lens = right-left
+
+                #移动slow,缩小窗口，符合最小的条件
+                if s[left] in hash_t.keys():
+                    if hash_t[s[left]]==window[s[left]]:
+                        count = count-1
+                    window[s[left]] =  window.get(s[left],0)-1
+
+                left = left+1
+        if lens == float('inf'):
+            return ""
+        else:
+            return s[start:start + lens]
