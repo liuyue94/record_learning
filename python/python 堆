@@ -1,0 +1,39 @@
+python 堆
+
+https://cloud.tencent.com/developer/article/1794191
+
+python可以使用heapq来实现。heapq默认是小顶堆
+
+
+
+堆结构分为大顶堆和小顶堆，在heapq中使用的是小顶堆：
+
+1. 大顶堆：每个节点(叶节点除外)的值都大于等于其子节点的值，根节点的值是所有节点中最大的。
+
+2. 小顶堆：每个节点(叶节点除外)的值都小于等于其子节点的值，根节点的值是所有节点中最小的。
+
+
+
+
+heapq常用的方法
+
+函 数	描 述
+heappush(heap, x)	将x压入堆中
+heappop(heap)	从堆中弹出最小的元素（栈顶元素）
+heapify([1,2,3])	让列表具备堆特征
+heapreplace(heap, x)	弹出最小的元素（栈顶元素），并将x压入堆中
+nlargest(n, iter)	返回iter中n个最大的元素
+nsmallest(n, iter)	返回iter中n个最小的元素
+
+
+python中如何调用大顶堆？
+　　python没有可以直接使用的大顶堆。但是我们可以给列表中的元素加上负号，是的变成小顶堆，再在取数的时候再将其添加负号，就将小顶堆变成了大顶堆。
+
+
+
+heapq中创建堆的方法有两种。
+
+heappush(heap, num)，先创建一个空堆，然后将数据一个一个地添加到堆中。每添加一个数据后，heap都满足小顶堆的特性。
+
+heapify(array)，直接将数据列表调整成一个小顶堆(调整的原理参考上面堆排序的文章，heapq库已经实现了)。
+
