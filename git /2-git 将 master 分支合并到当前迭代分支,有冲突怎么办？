@@ -1,0 +1,69 @@
+1-git 将 master 分支合并到当前迭代分支,有冲突怎么办？
+
+https://blog.csdn.net/weixin_43299180/article/details/119377866
+
+切换到master分支，拉取最新代码到本地
+
+
+
+切换到当前开发分支，合并master分支
+
+
+-----如果没有冲突
+git merge release
+Already up to date.
+
+-----如果有冲突
+
+（1）git status查看那些文件冲突了
+
+执行该命令后，Git会显示当前仓库的状态，包括哪些文件有冲突。在冲突的文件列表中，Git会将冲突的文件标记为 "both modified"
+
+	On branch <branch-name>
+	You have unmerged paths.
+	  (fix conflicts and run "git commit")
+	  (use "git merge --abort" to abort the merge)
+
+	Unmerged paths:
+	  (use "git add <file>..." to mark resolution)
+
+	        both modified:   file1.txt
+	        both modified:   file2.txt
+
+	no changes added to commit (use "git add" and/or "git commit -a")
+
+
+（2）打开包含冲突的文件（在上述示例中是 file.txt），您会看到类似下面的标记：
+
+
+<<<<<<< HEAD
+本地仓库的代码
+=======
+远程仓库的代码
+>>>>>>> abcdefg (远程分支的提交哈希值)
+
+
+（3）解决冲突
+
+
+ (4) 解决冲突后，保存文件，并执行以下命令将解决冲突后的文件标记为已解决：
+
+    git add file.txt
+
+ (5) 继续执行合并操作：
+
+	如果您只想执行合并操作而不进行新的提交，可以使用以下命令：
+	    git merge --continue
+
+	如果您想创建一个新的提交来表示解决了冲突，可以使用以下命令：
+	git commit -m "Resolve merge conflict"
+
+
+ (6)完成合并后，您可以继续进行 git push 操作将更改推送到远程仓库。
+
+
+
+
+
+
+
